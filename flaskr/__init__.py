@@ -1,11 +1,24 @@
 import os
-
+import sys
 from flask import Flask
+import logging
+import markdown
+
 
 
 def create_app(test_config=None):
     # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
+    # app = Flask(__name__, instance_relative_config=True)
+    app = Flask('flaskr', instance_relative_config=True)
+    handler = logging.StreamHandler(sys.stdout)
+    handler.setFormatter(logging.Formatter(
+    '%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+    app.logger.addHandler(handler)
+    app.logger.setLevel(logging.DEBUG)
+
+
+
+
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
@@ -29,6 +42,9 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
     
+    @app.template_filter('markdown_to_html')
+    def markdown_to_html(text):
+        return markdown.markdown(text)
 
     from . import db
     db.init_app(app)
@@ -39,6 +55,7 @@ def create_app(test_config=None):
     from . import blog
     app.register_blueprint(blog.bp)
     app.add_url_rule('/', endpoint='index')
+    # app.logger.debug("TESTING!")
     
 
     return app

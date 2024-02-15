@@ -4,10 +4,24 @@ from flask import (
 from werkzeug.exceptions import abort
 from flaskr.auth import login_required
 from flaskr.db import get_db
+import logging
+import markdown
+
 
 bp = Blueprint('blog', __name__)
 
 @bp.route('/')
+def index():
+    db = get_db()
+    posts = db.execute(
+        'SELECT p.id, title, body, created, author_id, username'
+        ' FROM post p JOIN user u ON p.author_id = u.id'
+        ' ORDER BY created DESC'
+    ).fetchall()
+    return render_template('blog/index.html', posts=posts)
+
+
+@bp.route('/blog')
 def index():
     db = get_db()
     posts = db.execute(
@@ -24,6 +38,9 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
+       
+
+
         error = None
 
         if not title:
@@ -68,7 +85,11 @@ def update(id):
 
     if request.method == 'POST':
         title = request.form['title']
-        body = request.form['body']
+        body = markdown.markdown(request.form['body'])
+        logger = logging.getLogger('flaskr.blog')
+        logger.info('This is an INFO message')
+        logger.info(body)
+
         error = None
 
         if not title:
