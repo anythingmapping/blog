@@ -4,11 +4,11 @@
 __pycache__/
 v_env/
 instance/
-
+.vscode
 .pytest_cache/
 .coverage
 htmlcov/
-
+venv/
 dist/
 build/
 *.egg-info/

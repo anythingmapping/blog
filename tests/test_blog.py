@@ -1,5 +1,5 @@
 import pytest
-from flaskr.db import get_db
+from am_blog.db import get_db
 
 @pytest.mark.skip(reason="Don't want to test this currently")
 def test_index(client, auth):

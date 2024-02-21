@@ -10,7 +10,7 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "flaskr",
+                "FLASK_APP": "am_blog",
                 "FLASK_DEBUG": "1"
             },
             "args": [

@@ -9,7 +9,7 @@ import markdown
 def create_app(test_config=None):
     # create and configure the app
     # app = Flask(__name__, instance_relative_config=True)
-    app = Flask('flaskr', instance_relative_config=True)
+    app = Flask('am_blog', instance_relative_config=True)
     handler = logging.StreamHandler(sys.stdout)
     handler.setFormatter(logging.Formatter(
     '%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
@@ -21,7 +21,7 @@ def create_app(test_config=None):
 
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        DATABASE=os.path.join(app.instance_path, 'am_blog.sqlite'),
         UPLOAD_FOLDER = os.path.join(app.instance_path, r'static/images')
     )
 

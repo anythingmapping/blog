@@ -5,8 +5,8 @@ from flask import (
 from werkzeug.utils import secure_filename
 from werkzeug.exceptions import abort
 
-from flaskr.auth import login_required
-from flaskr.db import get_db
+from am_blog.auth import login_required
+from am_blog.db import get_db
 import logging
 import markdown
 import os
@@ -14,7 +14,7 @@ from slugify import slugify
 
 
 bp = Blueprint('blog', __name__)
-logger = logging.getLogger('flaskr.blog')
+logger = logging.getLogger('am_blog.blog')
 
 
 UPLOAD_FOLDER = '/static/images'
