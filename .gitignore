@@ -2,7 +2,7 @@
 .DS_Store
 *.pyc
 __pycache__/
-venv/
+v_env/
 instance/
 
 .pytest_cache/
