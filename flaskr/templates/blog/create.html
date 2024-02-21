@@ -8,26 +8,31 @@
 <form method="post">
     <label for="title">Title</label>
     <input name="title" id="title" value="{{ request.form['title'] }}" required>
+    <label for="title">Intro Text</label>
+    <input name="intro" id="intro" value="{{ request.form['intro'] }}" required>
     <label for="body">Body</label>
     <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
+    <label for="body">lng</label>
+    <input type="text" name="lng" value="{{ request.form['lng'] }}" required>
+    <label for="body">lat</label>
+    <input type="text" name="lat" value="{{ request.form['lat'] }}" required>
 
 
-    <label for="txtPost">Upload Images</label>
-    <div class="input-group">
-        <span class="input-group-btn">
-            <span class="btn btn-primary btn-file">
-                <input type="file" id="fileupload" name="file" multiple>
-            </span>
-        </span>
-    </div>
+    <!-- <label for="txtPost">Upload Images</label>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+    </form> -->
 
-    <div class="form-group">
+
+    <input type="submit" value="Upload">
+
+    <!-- <div class="form-group">
         <input type="checkbox"> Mark as Private <span aria-hidden="true"></span>
         <input type="checkbox"> Mark as Done <span aria-hidden="true"></span>
-    </div>
+    </div> -->
 
 
 
-    <input type="submit" value="Save">
+
 </form>
 {% endblock %}

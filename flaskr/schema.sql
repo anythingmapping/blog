@@ -12,6 +12,16 @@ CREATE TABLE post (
   author_id INTEGER NOT NULL,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   title TEXT NOT NULL,
+  slug TEXT,
+  intro TEXT NOT NULL,
   body TEXT NOT NULL,
+  lng REAL NOT NULL,
+  lat REAL NOT NULL,
   FOREIGN KEY (author_id) REFERENCES user (id)
 );
+
+
+-- ALTER TABLE post ADD COLUMN intro TEXT;
+
+-- ALTER TABLE post 
+-- ADD COLUMN slug TEXT;

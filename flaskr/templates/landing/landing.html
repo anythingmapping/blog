@@ -12,18 +12,14 @@
 <article class="post">
     <header>
         <div>
-            <!-- <h1>{{ post['title'] }}</h1> -->
-            <h1><a href="{{ url_for('blog.post_detail', slug=post['slug']) }}">{{ post['title'] }}</a></h1>
-            <div class="about"> published {{ post['created'].strftime('%Y-%m-%d') }} lat: {{ post['lat'] }} lng: {{
-                post['lng'] }}</div>
-
+            <h1>{{ post['title'] }}</h1>
+            <div class="about"> published {{ post['created'].strftime('%Y-%m-%d') }}</div>
         </div>
         {% if g.user['id'] == post['author_id'] %}
         <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
         {% endif %}
     </header>
-
-    <p class="body">{{ post['intro'] | markdown_to_html | safe }}</p>
+    <p class="body">{{ post['body'] | markdown_to_html | safe }}</p>
 </article>
 {% if not loop.last %}
 <hr>

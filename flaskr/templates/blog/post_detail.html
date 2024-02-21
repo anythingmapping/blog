@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{{ post['title'] }}</h1>
+
+
+{% endblock %}
+
+{% block content %}
+<article class="post">
+    <header>
+        <div>
+            <div class="about"> published {{ post['created'].strftime('%Y-%m-%d') }} lat: {{ post['lat'] }} lng: {{
+                post['lng'] }}</div>
+
+        </div>
+    </header>
+    <p class="body">{{ post['body'] | markdown_to_html | safe }}</p>
+</article>
+<hr>
+{% endblock %}
